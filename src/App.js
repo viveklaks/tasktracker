@@ -2,6 +2,7 @@ import { Header } from "./components/Header";
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom'
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
+
 import {useState , useEffect} from 'react';
 import Footer from "./components/Footer";
 import About from "./components/About";
@@ -9,8 +10,12 @@ import react from "react";
 function App() {
   
   const [showAddTask, setShowAddTask] = useState(false)
+  const [editTaskId,setEditTaskId] = useState(null);
+  
   const [tasks,setTasks] =  useState([])
+  const [task,setTask] =  useState([])
   useEffect(()=>{
+    
     const getTasks = async()=>{
       const tasksFromServer = await fetchTasks()
       setTasks(tasksFromServer)
@@ -19,6 +24,8 @@ function App() {
     
     getTasks()
   },[])
+
+
   //Fetch Tasks
   const fetchTasks = async()=>{
     const res = await fetch('http://localhost:5000/tasks')
@@ -34,6 +41,7 @@ function App() {
 //Add Task
 const addTask= async(task)=>{
 
+  console.log(task)
   const res = await fetch('http://localhost:5000/tasks',{
     method: 'POST',
     
@@ -51,6 +59,29 @@ const addTask= async(task)=>{
    const newTask = {id , ...task}
   setTasks([...tasks, newTask])
 }
+//Save editTask
+const saveEditTask=async(task)=>{
+   console.log(task)
+   console.log(JSON.stringify(task))
+   setEditTaskId(null)
+  const res = await fetch(`http://localhost:5000/tasks/${task.id}`,{
+    method: 'PUT',
+    
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    body: JSON.stringify(task)
+  })
+ const data = await res.json()
+ console.log(data.id)
+ setTasks(...tasks.filter((task)=>task.id !==data.id),data)
+  
+  console.log(tasks)
+  
+   //const newTask = {...task}
+  //setTask([...task, newTask])*/
+}
 
 // Delete Task
 const deleteTask =async(id)=>{
@@ -58,6 +89,17 @@ const deleteTask =async(id)=>{
     method: 'DELETE',
   })
   setTasks(tasks.filter((task)=>task.id !==id))
+}
+//onEdit
+const EditTask =(id)=>{
+  
+  setEditTaskId(id)
+}
+//onEdit
+const cancelEdit =()=>{
+  
+  setEditTaskId(null)
+  console.log(editTaskId)
 }
 // Toggle Remainder
 const toggleReminder= async(id)=>{
@@ -83,6 +125,16 @@ const toggleReminder= async(id)=>{
   console.log(tasks)
   
 }
+/*const editTask = ()=>{
+  console.log(task);
+  
+
+}*/
+
+
+
+
+
 
   return (
     <Router>
@@ -97,7 +149,15 @@ const toggleReminder= async(id)=>{
           element={ (
             <react.Fragment>
       {showAddTask && <AddTask onAdd={addTask}/>}
-      { tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask} 
+      
+      { tasks.length > 0 ? (
+      <Tasks 
+       tasks={tasks}
+       onDelete={deleteTask}
+       onEdit ={EditTask}
+       cancel={cancelEdit}
+       taskId ={editTaskId}
+       onUpdate={saveEditTask}
       onToggle={toggleReminder}/>):("No Tasks to show")}
      
       
@@ -106,6 +166,7 @@ const toggleReminder= async(id)=>{
             </react.Fragment>
           )}
           exact/>
+        
       <Route path='/about' element={<About/>}/>
       </Routes>
      

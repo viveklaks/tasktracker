@@ -110,3 +110,14 @@ footer {
   margin-top: 30px;
   text-align: center;
 }
+table {
+  border-collapse: collapse;
+  border-spacing: 10;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px 8px;
+}
