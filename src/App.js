@@ -13,7 +13,7 @@ function App() {
   const [editTaskId,setEditTaskId] = useState(null);
   
   const [tasks,setTasks] =  useState([])
-  const [task,setTask] =  useState([])
+  const [taskId,setTaskId] =  useState(null)
   useEffect(()=>{
     
     const getTasks = async()=>{
@@ -75,6 +75,7 @@ const saveEditTask=async(task)=>{
   })
  const data = await res.json()
  console.log(data.id)
+ setTaskId(data.id)
  setTasks(...tasks.filter((task)=>task.id !==data.id),data)
   
   console.log(tasks)
@@ -82,7 +83,16 @@ const saveEditTask=async(task)=>{
    //const newTask = {...task}
   //setTask([...task, newTask])*/
 }
+useEffect(()=>{
+  const getTasks = async()=>{
+  const tasksFromServer = await fetchTasks()
+  setTasks(tasksFromServer)
 
+    }
+
+if(taskId){getTasks()}
+return ()=>setTaskId(null)
+  },[taskId]);
 // Delete Task
 const deleteTask =async(id)=>{
   await fetch(`http://localhost:5000/tasks/${id}`,{
@@ -138,7 +148,7 @@ const toggleReminder= async(id)=>{
 
   return (
     <Router>
-    <div className="App">
+    <div className="container">
       <Header title="Task Tracker" 
       onAdd={()=> setShowAddTask(!showAddTask)} 
       showAdd={showAddTask}/>
