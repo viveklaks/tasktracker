@@ -1,16 +1,10 @@
 {
   "tasks": [
     {
-      "text": "learn node",
+      "text": "learn node and react",
       "day": "morning 9am",
       "reminder": true,
       "id": 10
-    },
-    {
-      "text": "qqq",
-      "day": "qqqq",
-      "reminder": true,
-      "id": 12
     },
     {
       "text": "regular",
@@ -19,16 +13,22 @@
       "id": 13
     },
     {
-      "text": "vcvcv",
-      "day": "cvcvvc",
+      "text": "learn data structure",
+      "day": "morning 7 am",
       "reminder": true,
-      "id": 14
+      "id": 16
     },
     {
-      "text": "dsd",
-      "day": "sds",
+      "text": "awsEC2 and Azure",
+      "day": "after lunch",
       "reminder": true,
-      "id": 15
+      "id": 17
+    },
+    {
+      "text": "ML ,NN and CV",
+      "day": "After dinner",
+      "reminder": true,
+      "id": 18
     }
   ]
 }

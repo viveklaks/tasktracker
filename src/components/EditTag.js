@@ -2,6 +2,7 @@ import React ,{useState}from 'react'
 
 
 import {TiCancel} from 'react-icons/ti'
+import Button from './Button';
 
 export const EditTag = ({task, onUpdate ,cancel}) => {
     const [id,setId] =useState(task.id);
@@ -28,45 +29,33 @@ export const EditTag = ({task, onUpdate ,cancel}) => {
 
     }
     return (
-        <h3 style={{overflow: "auto"}}>
+        
            <form onSubmit={onEdit}>
-            <table style={{width:"100%"}} >
-
-            <thead>
-                <tr style={{textAlign: 'left'}}>
-                    <th>Task</th>
-                    <th>Day & Time</th> 
-                    <th>Set Reminder</th>
-                    <th>Save</th> 
-                    <th>Cancel</th>
-                </tr>
-            </thead> 
-            <tbody>
-                <tr>
-                <td>
+            
+                <div className='form-control'>
+                <label>Task</label>
                      <input className="mb-3" type="text" placeholder='Add Task' required="required" name ="text" value={text} onChange={e=>setText(e.target.value)} />
-                </td>
-                <td>
+                </div>
+                <div className='form-control'>
+                <label>Day & Time</label> 
                     <input type="text" placeholder='Add Day & Time' required="required" name ="day"  value={day} onChange={e=>setDay(e.target.value)}  />
-                </td>
-                <td>
+                </div>
+                <div className='form-control form-control-check'>
+                <label>Set Reminder</label>
                     <input  type="checkbox" checked={reminder} name ="reminder" value={reminder} onChange={e=>setReminder(e.currentTarget.checked)}/>
-                </td>
-                <td>
-                <input style={{ color: 'blue'}} type="submit" value='Save Task'/>
-                </td>
-                <td> 
-                    <TiCancel style={{
-                        color: 'grey',textAlign:'right', cursor: 'pointer'
-                        }} onClick={() =>cancel(task)} />
-                </td>
+                </div>
+                
+                <input className='btn btn-block' type="submit" value='Update Task'/>
+                
+                <Button color ={'blue'} text={'Cancel Update'} onClick={() =>cancel(task)} />
+                
       
-                </tr>
-            </tbody>    
-            </table>
+                
+               
+            
             </form>
             
-        </h3>
+       
     )
 }
 export default EditTag 
