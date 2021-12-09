@@ -56,7 +56,9 @@ const addTask= async(task)=>{
   setTasks([...tasks,data])
   console.log(tasks)
   const id = Math.floor(Math.random()*1000)+1
-   const newTask = {id , ...task}
+  console.log("Id created on add task",id)
+  setTaskId(id)
+  const newTask = {id , ...task}
   setTasks([...tasks, newTask])
 }
 //Save editTask
@@ -104,13 +106,15 @@ const deleteTask =async(id)=>{
 const EditTask =(id)=>{
   
   setEditTaskId(id)
+  console.log("editTaskId onClickEditTask",editTaskId)
+  console.log("taskId onClickEditTask",taskId)
 }
 //onEdit
 const cancelEdit =()=>{
   
   setEditTaskId(null)
-  console.log(editTaskId)
-}
+  console.log("editTaskId onClickCancelEdit",editTaskId)
+  console.log("taskId onClickCancelEdit",taskId)}
 // Toggle Remainder
 const toggleReminder= async(id)=>{
   console.log(id)

@@ -1,7 +1,5 @@
 import React ,{useState}from 'react'
 
-
-import {TiCancel} from 'react-icons/ti'
 import Button from './Button';
 
 export const EditTag = ({task, onUpdate ,cancel}) => {

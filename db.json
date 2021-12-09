@@ -19,16 +19,40 @@
       "id": 16
     },
     {
-      "text": "awsEC2 and Azure",
-      "day": "after lunch",
+      "text": "soft skills and Communication",
+      "day": "On break time",
       "reminder": true,
       "id": 17
     },
     {
-      "text": "ML ,NN and CV",
-      "day": "After dinner",
+      "text": "cooking and cleaning",
+      "day": "evening",
       "reminder": true,
       "id": 18
+    },
+    {
+      "text": "sleep and rest",
+      "day": "night",
+      "reminder": true,
+      "id": 19
+    },
+    {
+      "text": "get together and farewell",
+      "day": "2pm",
+      "reminder": true,
+      "id": 20
+    },
+    {
+      "text": "save change",
+      "day": "example",
+      "reminder": true,
+      "id": 23
+    },
+    {
+      "text": "get change updated",
+      "day": "get",
+      "reminder": false,
+      "id": 24
     }
   ]
 }
