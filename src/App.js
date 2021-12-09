@@ -7,13 +7,15 @@ import {useState , useEffect} from 'react';
 import Footer from "./components/Footer";
 import About from "./components/About";
 import react from "react";
+import Login from "./components/Login";
+import Registeration from "./components/Registeration";
 function App() {
-  
-  const [showAddTask, setShowAddTask] = useState(false)
+  const [login,setLogin]= useState(false);
+  const [showAddTask, setShowAddTask] = useState(false);
   const [editTaskId,setEditTaskId] = useState(null);
   
-  const [tasks,setTasks] =  useState([])
-  const [taskId,setTaskId] =  useState(null)
+  const [tasks,setTasks] =  useState([]);
+  const [taskId,setTaskId] =  useState(null);
   useEffect(()=>{
     
     const getTasks = async()=>{
@@ -145,17 +147,28 @@ const toggleReminder= async(id)=>{
 
 }*/
 
+const onLogin=(User)=>{
+  if(User.username && User.password){
+    setLogin(true)
+}
+  }
+const logOut=()=>{
+  setLogin(false)
+}  
+const onRegisteration=(UserDetails)=>{
+  if(UserDetails.username && UserDetails.firstname&& UserDetails.lastname&& UserDetails.email && UserDetails.password){
+    console.log(UserDetails.username,UserDetails.firstname,UserDetails.lastname,UserDetails.email,UserDetails.password)
+  }
+
+}  
 
 
-
-
-
-  return (
+   return login ? (
     <Router>
     <div className="container">
       <Header title="Task Tracker" 
       onAdd={()=> setShowAddTask(!showAddTask)} 
-      showAdd={showAddTask}/>
+      showAdd={showAddTask} logOut={logOut}/>
        <Routes>
         <Route
           path='/'
@@ -193,7 +206,14 @@ const toggleReminder= async(id)=>{
     </div>
     </Router>
     
-  );
+  ):(<Router><div className="container">
+  
+  <Routes>
+  
+  <Route path='/' element={<Login onLoginfill={onLogin}/>}/>
+  <Route path='/register' element={<Registeration onRegisterfill={onRegisteration}/>}/>
+  </Routes>
+  </div></Router>);
 }
 
 export default App;

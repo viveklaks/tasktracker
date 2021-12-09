@@ -54,5 +54,15 @@
       "reminder": false,
       "id": 24
     }
+  ],
+  "users": [
+    {
+      "Username": "Abc",
+      "Fname": "ABCD",
+      "Lname": "XYZ",
+      "Email": "abc@example.com",
+      "Password": "abc123",
+      "id": 1
+    }
   ]
 }
