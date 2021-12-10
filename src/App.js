@@ -147,20 +147,15 @@ const toggleReminder= async(id)=>{
 
 }*/
 
-const onLogin=(User)=>{
-  if(User.username && User.password){
+const onLogin=(login)=>{
+  if(login=== true){
     setLogin(true)
 }
   }
 const logOut=()=>{
   setLogin(false)
 }  
-const onRegisteration=(UserDetails)=>{
-  if(UserDetails.username && UserDetails.firstname&& UserDetails.lastname&& UserDetails.email && UserDetails.password){
-    console.log(UserDetails.username,UserDetails.firstname,UserDetails.lastname,UserDetails.email,UserDetails.password)
-  }
-
-}  
+ 
 
 
    return login ? (
@@ -211,7 +206,7 @@ const onRegisteration=(UserDetails)=>{
   <Routes>
   
   <Route path='/' element={<Login onLoginfill={onLogin}/>}/>
-  <Route path='/register' element={<Registeration onRegisterfill={onRegisteration}/>}/>
+  <Route path='/register' element={<Registeration/>}/>
   </Routes>
   </div></Router>);
 }

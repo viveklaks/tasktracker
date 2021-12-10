@@ -1,8 +1,8 @@
-import React ,{useState}from 'react'
+import React ,{useState}from 'react';
 
+import axios from 'axios';
 
-
-export const Registeration = ({ onRegisterfill }) => {
+export const Registeration = () => {
     const [username,setUsername] =useState('');
     const [firstname,setFirstname] =useState('')
     const [lastname,setLastname] =useState('')
@@ -21,7 +21,9 @@ export const Registeration = ({ onRegisterfill }) => {
             
         }
         
-        onRegisterfill({username,firstname,lastname,email,password})
+        //onRegisterfill({username,firstname,lastname,email,password})
+        axios.post('http://localhost:5500/register',{username,firstname,lastname,email,password})
+        .then(res => console.log(res.data)).catch(err => console.log(err));
         setUsername('')
         setFirstname('')
         setLastname('')
@@ -31,7 +33,7 @@ export const Registeration = ({ onRegisterfill }) => {
     }
     return (
         
-           <form action='/'onSubmit={onRegisteration}>
+           <form path='/' method="POST"onSubmit={onRegisteration}>
                 <h2 style={{textAlign:'center'}}>Registration Form</h2>
                 <div className='form-control'>
                 <label>Username</label>

@@ -1,10 +1,10 @@
 import React ,{ useState}from 'react'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios';
 
 export const Login = ({ onLoginfill }) => {
     const [username,setUsername] =useState('');
-    
+    const[login,setLogin]=useState(null);
    const [password,setPassword] =useState('');
     const onLogin = e =>{
         console.log(e)
@@ -18,6 +18,18 @@ export const Login = ({ onLoginfill }) => {
         }
         
         onLoginfill({username,password})
+        axios.post('http://localhost:5500/login',{username,password})
+        .then(res => {
+            console.log(res.data);
+            setLogin(true)
+            onLoginfill(login)
+        
+        }).catch(err =>
+            {
+                console.log(err)
+                setLogin(false)
+            onLoginfill(login)
+            });
         setUsername('')
        
         setPassword('')
