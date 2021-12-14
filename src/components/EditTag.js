@@ -21,7 +21,7 @@ export const EditTag = ({task, onUpdate ,cancel}) => {
         }
         onUpdate({text,day,reminder,id})
         setText('')
-        setDay('')
+        setDay()
         setReminder(false)
         setId()
 
@@ -36,7 +36,7 @@ export const EditTag = ({task, onUpdate ,cancel}) => {
                 </div>
                 <div className='form-control'>
                 <label>Day & Time</label> 
-                    <input type="text" placeholder='Add Day & Time' required="required" name ="day"  value={day} onChange={e=>setDay(e.target.value)}  />
+                    <input type="datetime-local" placeholder='Add Day & Time' required="required" name ="day"  value={day} onChange={e=>setDay(e.target.value)}  />
                 </div>
                 <div className='form-control form-control-check'>
                 <label>Set Reminder</label>

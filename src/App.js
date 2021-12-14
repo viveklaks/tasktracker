@@ -10,6 +10,7 @@ import react from "react";
 import Login from "./components/Login";
 import Registeration from "./components/Registeration";
 function App() {
+  const [username,setUsername]=useState()
   const [login,setLogin]= useState(false);
   const [showAddTask, setShowAddTask] = useState(false);
   const [editTaskId,setEditTaskId] = useState(null);
@@ -147,9 +148,10 @@ const toggleReminder= async(id)=>{
 
 }*/
 
-const onLogin=(login)=>{
-  if(login=== true){
+const onLogin=(loginDetail)=>{
+  if(loginDetail.login=== true){
     setLogin(true)
+    setUsername(loginDetail.username)
 }
   }
 const logOut=()=>{
@@ -163,7 +165,7 @@ const logOut=()=>{
     <div className="container">
       <Header title="Task Tracker" 
       onAdd={()=> setShowAddTask(!showAddTask)} 
-      showAdd={showAddTask} logOut={logOut}/>
+      showAdd={showAddTask} logOut={logOut} username={username}/>
        <Routes>
         <Route
           path='/'
