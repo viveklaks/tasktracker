@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import {url} from './db/db.js'
+
 const app =express();
 
 
@@ -46,6 +47,42 @@ app.post("/register",(req,res)=>{
     
 
 });
+app.put("/newtasks",(req,res)=>{
+    
+        User.findOneAndUpdate({username:req.body.username},{"$push":
+        {"task":{"text": req.body.text,
+        "day": req.body.day,
+        "reminder": false }}},function (error,success){
+            if(error){
+                console.error(`Unable to update comment: ${error}`);
+        return { error: error }
+            }else{
+                console.log(success,res.body,res.route);
+                
+                return res.status(200).json({msg:"task added successfull"})  
+            }
+        });
+
+});
+app.put("/updatetasks",(req,res)=>{
+    var id = mongoose.Types.ObjectId(req.body.id);
+    console.log(req.body);
+    console.log(id);
+    User.findOneAndUpdate({username:req.body.username,'task._id':id},{$set:
+    {"task.$.text": req.body.text,
+    "task.$.day": req.body.day,
+    "task.$.reminder": req.body.reminder }},function (error,success){
+        if(error){
+            console.error(`Unable to update comment: ${error}`);
+    return { error: error }
+        }else{
+            console.log(success,res.body,res.route);
+            
+            return res.status(200).json({msg:"task updated successfull"})  
+        }
+    });
+
+});
 
 app.post("/login",(req,res)=>{
     try {
@@ -64,6 +101,13 @@ app.post("/login",(req,res)=>{
       }
     
 
+});
+app.post("/login",(req,res)=>{
+    try{
+        User.findOneAndUpdate({username:req.body.username})
+    }catch(e){
+        console.log(e.message)
+    }
 });
 app.get('/',(req,res)=>{
     res.send("Hello Node")

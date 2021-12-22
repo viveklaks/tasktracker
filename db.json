@@ -2,57 +2,90 @@
   "tasks": [
     {
       "text": "learn node and react",
-      "day": "2021-12-12T21:00",
+      "day": "Thursday, 16 December 2021 at 21:49",
       "reminder": true,
       "id": 10
     },
     {
       "text": "regular",
-      "day": "daily",
-      "reminder": true,
+      "day": "2021-12-14T13:12",
+      "reminder": false,
       "id": 13
     },
     {
       "text": "learn data structure",
-      "day": "morning 7 am",
+      "day": "2021-12-17T14:12",
       "reminder": true,
       "id": 16
     },
     {
       "text": "soft skills and Communication",
-      "day": "On break time",
+      "day": "2021-12-14T15:13",
       "reminder": true,
       "id": 17
     },
     {
       "text": "cooking and cleaning",
-      "day": "evening",
+      "day": "2021-12-14T16:13",
       "reminder": true,
       "id": 18
     },
     {
-      "text": "sleep and rest",
-      "day": "night",
+      "text": "client meeting",
+      "day": "2021-12-15T10:25",
       "reminder": true,
-      "id": 19
+      "id": 27
     },
     {
-      "text": "get together and farewell",
-      "day": "2pm",
+      "text": "client task update",
+      "day": "2021-12-14T17:00",
       "reminder": true,
-      "id": 20
+      "id": 30
     },
     {
-      "text": "save change",
-      "day": "example",
+      "text": "once again",
+      "day": "Sunday, 19th December 2021 at 14:40",
       "reminder": true,
-      "id": 23
+      "id": 32
     },
     {
-      "text": "get change updated",
-      "day": "get",
+      "text": "second task",
+      "day": "Sunday, 26th December 2021 at 18:40",
+      "reminder": true,
+      "id": 33
+    },
+    {
+      "text": "check task 45645",
+      "day": "Saturday, 18th December 2021 at 17:57",
       "reminder": false,
-      "id": 24
+      "id": 35
+    },
+    {
+      "text": "changed switch",
+      "day": "Tuesday, 21 December 2021 at 19:53",
+      "reminder": false,
+      "id": 36
+    },
+    {
+      "text": "aasa",
+      "day": "Tuesday, 21 December 2021 at 23:10",
+      "category": "Hobby",
+      "reminder": true,
+      "id": 37
+    },
+    {
+      "text": "assss",
+      "day": "Wednesday, 22 December 2021 at 23:11",
+      "category": "Hobby",
+      "reminder": true,
+      "id": 38
+    },
+    {
+      "text": "ghjk",
+      "category": "Hobby",
+      "day": "Tuesday, 21 December 2021 at 0:12",
+      "reminder": true,
+      "id": 39
     }
   ],
   "users": [

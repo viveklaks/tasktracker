@@ -45,6 +45,16 @@ function App() {
 const addTask= async(task)=>{
 
   console.log(task)
+  
+    const daytimeFunc = new Date(task.day);
+    
+    let weekday = daytimeFunc.toLocaleDateString("en-US",{weekday:'long'} );
+    let month = daytimeFunc.toLocaleDateString("en-US",{month:'long'} );
+    console.log(typeof daytimeFunc );
+    console.log(daytimeFunc.getDate(), daytimeFunc.getMonth(),daytimeFunc.getFullYear(),typeof daytimeFunc.getDay(),daytimeFunc.getHours(),daytimeFunc.getMinutes());
+    console.log(weekday,',', daytimeFunc.getDate(),'th ',month, daytimeFunc.getFullYear(),'at',daytimeFunc.getHours(),':',daytimeFunc.getMinutes())
+    task.day = (`${weekday}, ${daytimeFunc.getDate()} ${month} ${daytimeFunc.getFullYear()} at ${daytimeFunc.getHours()}:${daytimeFunc.getMinutes()}`);
+  console.log(task)
   const res = await fetch('http://localhost:5000/tasks',{
     method: 'POST',
     
@@ -66,6 +76,16 @@ const addTask= async(task)=>{
 }
 //Save editTask
 const saveEditTask=async(task)=>{
+  console.log(task)
+  const daytimeFunc = new Date(task.day);
+    
+  let weekday = daytimeFunc.toLocaleDateString("en-US",{weekday:'long'} );
+  let month = daytimeFunc.toLocaleDateString("en-US",{month:'long'} );
+  console.log(typeof daytimeFunc );
+  console.log(daytimeFunc.getDate(), daytimeFunc.getMonth(),daytimeFunc.getFullYear(),typeof daytimeFunc.getDay(),daytimeFunc.getHours(),daytimeFunc.getMinutes());
+  console.log(weekday,',', daytimeFunc.getDate(),'th ',month, daytimeFunc.getFullYear(),'at',daytimeFunc.getHours(),':',daytimeFunc.getMinutes())
+  task.day = (`${weekday}, ${daytimeFunc.getDate()} ${month} ${daytimeFunc.getFullYear()} at ${daytimeFunc.getHours()}:${daytimeFunc.getMinutes()}`);
+
    console.log(task)
    console.log(JSON.stringify(task))
    setEditTaskId(null)
@@ -149,6 +169,7 @@ const toggleReminder= async(id)=>{
 }*/
 
 const onLogin=(loginDetail)=>{
+  console.log(loginDetail)
   if(loginDetail.login=== true){
     setLogin(true)
     setUsername(loginDetail.username)

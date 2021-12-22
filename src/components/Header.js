@@ -9,7 +9,7 @@ export const Header = ({username,title, onAdd,showAdd,logOut}) => {
         <header className='header'>
             
             <h3>{title}</h3>
-            <React.Fragment style={{textalign:'center'}}>welcome {username}</React.Fragment >
+            <React.Fragment >welcome {username}</React.Fragment >
             {location.pathname === '/' &&<Button color ={showAdd? 'red':'green'} text={showAdd? 'Close':'Add'} onClick={onAdd} />}
             
             <GrLogout color ={'black'} text={'LogOut'} onClick={logOut} />

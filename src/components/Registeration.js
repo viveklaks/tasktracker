@@ -8,6 +8,11 @@ export const Registeration = () => {
     const [lastname,setLastname] =useState('')
     const [email,setEmail] =useState('')
     const [password,setPassword] =useState('')
+    const [retypePassword,setRetypePassword] =useState('')
+    const onUserNameCheck=e=>{
+            setUsername(e.target.value)
+            console.log(username)
+    }
     const onRegisteration = e =>{
         console.log(e)
         console.log(username)
@@ -16,19 +21,24 @@ export const Registeration = () => {
         console.log(email)
         console.log(password)
         
-        if(!username && !firstname && !lastname && email && !password){
-            alert('Please fill  the form ')
-            
-        }
+        
         
         //onRegisterfill({username,firstname,lastname,email,password})
-        axios.post('http://localhost:5500/register',{username,firstname,lastname,email,password})
-        .then(res => console.log(res.data)).catch(err => console.log(err));
+        if(password !==retypePassword ){
+            alert('Password not matching ')
+            e.preventDefault()
+            
+        }else{
+            axios.post('http://localhost:5500/register',{username,firstname,lastname,email,password})
+            .then(res => console.log(res.data)).catch(err => console.log(err));
+        }
+        
         setUsername('')
         setFirstname('')
         setLastname('')
         setEmail('')
         setPassword('')
+        setRetypePassword('')
 
     }
     return (
@@ -37,7 +47,7 @@ export const Registeration = () => {
                 <h2 style={{textAlign:'center'}}>Registration Form</h2>
                 <div className='form-control'>
                 <label>Username</label>
-                     <input className="mb-3" type="text" placeholder='Username' required="required" name ="username" value={username} onChange={e=>setUsername(e.target.value)} />
+                     <input className="mb-3" type="text" placeholder='Username' required="required" name ="username" value={username} onChange={onUserNameCheck} />
                 </div>
                 <div className='form-control'>
                 <label>First Name</label> 
@@ -54,6 +64,10 @@ export const Registeration = () => {
                 <div className='form-control'>
                 <label>Password</label>
                 <input type="password" placeholder='Password' required="required" name ="password"  value={password} onChange={e=>setPassword(e.target.value)}  />
+                </div>
+                <div className='form-control'>
+                <label>Retype Password</label>
+                <input type="password" placeholder='Password' required="required" name ="password"  value={retypePassword} onChange={e=>setRetypePassword(e.target.value)}  />
                 </div>
                 
                 <input className='btn btn-block' type="submit" value='Register'/>

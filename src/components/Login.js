@@ -17,19 +17,19 @@ export const Login = ({ onLoginfill }) => {
             
         }
         
-        onLoginfill({username,password})
+        
         axios.post('http://localhost:5500/login',{username,password})
         .then(res => {
             console.log(res.data);
             setUsername(username)
             setLogin(true)
-            onLoginfill({username,login})
+            onLoginfill({username,login:true})
         
         }).catch(err =>
             {
                 console.log(err)
                 setLogin(false)
-            onLoginfill(login)
+            onLoginfill({username,login:false})
             });
         setUsername('')
        
