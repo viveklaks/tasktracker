@@ -1,16 +1,20 @@
 import React ,{ useState}from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { useAppContext } from './context';
 
 export const Login = ({ onLoginfill }) => {
+   
     const [username,setUsername] =useState('');
+    const {setState} = useAppContext();
+
     const[login,setLogin]=useState(null);
    const [password,setPassword] =useState('');
     const onLogin = e =>{
-        console.log(e)
-       // console.log(username)
-        
-        console.log(password)
+        //console.log(e)
+      // console.log(username)
+     
+        //console.log(password)
         e.preventDefault()
         if(!username || !password){
             alert('Please enter username ')
@@ -24,6 +28,8 @@ export const Login = ({ onLoginfill }) => {
             setUsername(username)
             setLogin(true)
             onLoginfill({username,login:true})
+            setState({logi:true, uname:username})
+            
         
         }).catch(err =>
             {

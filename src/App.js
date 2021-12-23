@@ -9,7 +9,9 @@ import About from "./components/About";
 import react from "react";
 import Login from "./components/Login";
 import Registeration from "./components/Registeration";
+import { useAppContext } from "./components/context";
 function App() {
+  const {state} = useAppContext();
   const [username,setUsername]=useState()
   const [login,setLogin]= useState(false);
   const [showAddTask, setShowAddTask] = useState(false);
@@ -171,8 +173,19 @@ const toggleReminder= async(id)=>{
 const onLogin=(loginDetail)=>{
   console.log(loginDetail)
   if(loginDetail.login=== true){
-    setLogin(true)
-    setUsername(loginDetail.username)
+    
+    //setUsername(loginDetail.username)
+    console.log("login after : ",state.logi)
+    console.log("username after : ",state.uname)
+ 
+    console.log("login before: ",login)
+    //setLogin(true)
+   
+    
+ 
+   
+    //setLogin(true)
+    //setUsername(loginDetail.username)
 }
   }
 const logOut=()=>{
