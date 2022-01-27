@@ -21,9 +21,9 @@ mongoose.connect(url,
 )
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
-app.post("/register",(req,res)=>{
+app.post("/register",async (req,res)=>{
     try {
-        User.findOne({$or:[{username:req.body.username},{email:req.body.email}]}).then((user)=>{
+        await User.findOne({$or:[{username:req.body.username},{email:req.body.email}]}).then((user)=>{
             if(user){
                 return res.status(400).json({email:" email already in user",username:"already in use"})
             }else{
@@ -36,7 +36,7 @@ app.post("/register",(req,res)=>{
                     
                 });
                 newUser.save()
-                return res.status(200).json({msg:newUser})
+                return res.status(200).json({msg:"Registration Successfull"})
             }
         });
         
