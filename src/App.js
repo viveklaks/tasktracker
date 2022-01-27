@@ -2,7 +2,7 @@ import { Header } from "./components/Header";
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom'
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
-
+import { useAppContext } from "./components/context";
 import {useState , useEffect} from 'react';
 import Footer from "./components/Footer";
 import About from "./components/About";
@@ -10,7 +10,8 @@ import react from "react";
 import Login from "./components/Login";
 import Registeration from "./components/Registeration";
 function App() {
-  const [username,setUsername]=useState()
+  const {state} = useAppContext();
+  const [username,setusername]=useState()
   const [login,setLogin]= useState(false);
   const [showAddTask, setShowAddTask] = useState(false);
   const [editTaskId,setEditTaskId] = useState(null);
@@ -168,13 +169,30 @@ const toggleReminder= async(id)=>{
 
 }*/
 
-const onLogin=(loginDetail)=>{
+const onLogin=async(loginDetail)=>{
   console.log(loginDetail)
-  if(loginDetail.login=== true){
-    setLogin(true)
-    setUsername(loginDetail.username)
+  if (loginDetail.login=== true){
+    
+    console.log(state)
+    console.log("login before: ",login)
+
+    setLogin()
+    console.log("login after : ",login)
+    console.log(state)
+    console.log("username before : ",username)
+    console.log(state)
+    setusername(loginDetail.username)
+    console.log("username after : ",username)
+    console.log(state)
 }
   }
+  useEffect(()=>{
+    setLogin(state.logi)
+    setusername(state.uname)
+    console.log("login after useEffect : ",login,"state.logi after useEffect : ",state.logi)
+    console.log("username after useEffect : ",username,"state.username after useEffect : ",state.username)
+
+  },[state])
 const logOut=()=>{
   setLogin(false)
 }  

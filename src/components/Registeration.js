@@ -1,8 +1,9 @@
 import React ,{useState}from 'react';
-
+import  {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
 export const Registeration = () => {
+    const navigate = useNavigate();
     const [username,setUsername] =useState('');
     const [firstname,setFirstname] =useState('')
     const [lastname,setLastname] =useState('')
@@ -30,7 +31,7 @@ export const Registeration = () => {
             
         }else{
             axios.post('http://localhost:5500/register',{username,firstname,lastname,email,password})
-            .then(res => console.log(res.data)).catch(err => console.log(err));
+            .then(res => console.log(res.data)).catch(err => console.log(err)).then(navigate('/') );
         }
         
         setUsername('')
@@ -43,7 +44,7 @@ export const Registeration = () => {
     }
     return (
         
-           <form path='/' method="POST"onSubmit={onRegisteration}>
+           <form  method="POST"onSubmit={onRegisteration}>
                 <h2 style={{textAlign:'center'}}>Registration Form</h2>
                 <div className='form-control'>
                 <label>Username</label>
@@ -71,13 +72,7 @@ export const Registeration = () => {
                 </div>
                 
                 <input className='btn btn-block' type="submit" value='Register'/>
-                
-                
-                
-      
-                
-               
-            
+
             </form>
             
        
